@@ -46,8 +46,11 @@ export function setBalanceWerehouse(
   setListWerehouses
 ) {
   let newList = [...werehouses];
+  let oldBalance = newList
+    .find((element) => element.id === werehouseId)
+    .items.get(itemId);
   newList
     .find((element) => element.id === werehouseId)
-    .items.set(itemId, balance);
+    .items.set(itemId, parseInt(oldBalance) + parseInt(balance));
   setListWerehouses(newList);
 }
