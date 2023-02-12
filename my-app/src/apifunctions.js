@@ -3,7 +3,7 @@ import { v1 as uuid } from "uuid";
 class Werehouse {
   constructor(name) {
     this.name = name;
-    this.items = [];
+    this.items = new Map();
     this.id = uuid();
   }
 }
@@ -11,7 +11,7 @@ class Werehouse {
 class Item {
   constructor(name) {
     this.name = name;
-    this.balance = 0;
+    this.price = null;
     this.id = uuid();
   }
 }
@@ -21,10 +21,10 @@ werehouses.push(new Werehouse("Cupertino"));
 werehouses.push(new Werehouse("Norrköping"));
 werehouses.push(new Werehouse("Frankfurt"));
 
-let items = ["Laptop", "Surfplatta", "Telefon"];
+let items = [new Item("Laptop"), new Item("Surfplatta"), new Item("Telefon")];
 
 items.forEach((product) =>
-  werehouses.forEach((werehouse) => werehouse.items.push(new Item(product)))
+  werehouses.forEach((werehouse) => werehouse.items.set(product.id, 0))
 );
 
 export function getItems() {
@@ -41,14 +41,13 @@ export function addWerehouse(name) {
 
 export function setBalanceWerehouse(
   werehouseId,
-  item,
+  itemId,
   balance,
   setListWerehouses
 ) {
   let newList = [...werehouses];
   newList
     .find((element) => element.id === werehouseId)
-    .items.find((element) => (element.name = item)).balance +=
-    parseInt(balance);
+    .items.set(itemId, balance);
   setListWerehouses(newList);
 }

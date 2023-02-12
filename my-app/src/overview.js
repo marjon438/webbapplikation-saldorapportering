@@ -1,18 +1,8 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { getItems } from "./apifunctions";
 
 export function Overview({ werehouses }) {
-  function itemname(items) {
-    return items.map((item) => {
-      return (
-        <div className="test">
-          <h6 className="item">{item.name}</h6>
-          <h6 className="item">{item.balance}</h6>
-        </div>
-      );
-    });
-  }
-
   return (
     <div>
       <h2>Översikt</h2>
@@ -24,9 +14,16 @@ export function Overview({ werehouses }) {
           </div>
           {werehouses.map((werehouse) => {
             return (
-              <div>
+              <div key={werehouse.id}>
                 <h4 className="werehousename">{werehouse.name}</h4>
-                {itemname(werehouse.items)}
+                {getItems().map((item) => {
+                  return (
+                    <div className="test" key={item.id}>
+                      <h6 className="item">{item.name}</h6>
+                      <h6 className="item">{werehouse.items.get(item.id)}</h6>
+                    </div>
+                  );
+                })}
               </div>
             );
           })}

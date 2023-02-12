@@ -7,7 +7,7 @@ import { setBalanceWerehouse } from "./apifunctions";
 import { getItems } from "./apifunctions";
 
 export function Transfer({ werehouses, setListWerehouses }) {
-  const [selectedItem, setSelectedItem] = useState("Välj produkt");
+  const [selectedItem, setSelectedItem] = useState({ name: "Välj produkt" });
   const [selectedFrom, setSelectedFrom] = useState({ name: "Välj varuhus" });
   const [selectedTo, setSelectedTo] = useState({ name: "Välj varuhus" });
   const [balance, setBalance] = useState(0);
@@ -20,7 +20,7 @@ export function Transfer({ werehouses, setListWerehouses }) {
       <h5>Produkt:</h5>
       <Dropdown className="dropdown">
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {selectedItem}
+          {selectedItem.name}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -32,7 +32,7 @@ export function Transfer({ werehouses, setListWerehouses }) {
                   setSelectedItem(item);
                 }}
               >
-                {item}
+                {item.name}
               </Dropdown.Item>
             );
           })}
@@ -91,17 +91,17 @@ export function Transfer({ werehouses, setListWerehouses }) {
         onClick={() => {
           setBalanceWerehouse(
             selectedFrom.id,
-            selectedItem,
+            selectedItem.id,
             -balance,
             setListWerehouses
           );
           setBalanceWerehouse(
             selectedTo.id,
-            selectedItem,
+            selectedItem.id,
             balance,
             setListWerehouses
           );
-          setSelectedItem("Välj produkt");
+          setSelectedItem({ name: "Välj produkt" });
           setSelectedFrom({ name: "Välj varuhus" });
           setSelectedTo({ name: "Välj varuhus" });
           setBalance(0);

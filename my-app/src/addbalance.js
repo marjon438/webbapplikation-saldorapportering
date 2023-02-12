@@ -7,7 +7,7 @@ import { setBalanceWerehouse } from "./apifunctions";
 import { getItems } from "./apifunctions";
 
 export function AddBalance({ werehouses, setListWerehouses }) {
-  const [selectedItem, setSelectedItem] = useState("Välj produkt");
+  const [selectedItem, setSelectedItem] = useState({ name: "Välj produkt" });
   const [selected, setSelected] = useState({ name: "Välj varuhus" });
   const [balance, setBalance] = useState(0);
   function changeBalance(event) {
@@ -19,7 +19,7 @@ export function AddBalance({ werehouses, setListWerehouses }) {
       <h5>Produkt:</h5>
       <Dropdown className="dropdown">
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {selectedItem}
+          {selectedItem.name}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -31,7 +31,7 @@ export function AddBalance({ werehouses, setListWerehouses }) {
                   setSelectedItem(item);
                 }}
               >
-                {item}
+                {item.name}
               </Dropdown.Item>
             );
           })}
@@ -71,12 +71,12 @@ export function AddBalance({ werehouses, setListWerehouses }) {
         onClick={() => {
           setBalanceWerehouse(
             selected.id,
-            selectedItem,
+            selectedItem.id,
             balance,
             setListWerehouses
           );
           setSelected({ name: "Välj varuhus" });
-          setSelectedItem("Välj produkt");
+          setSelectedItem({ name: "Välj produkt" });
           setBalance(0);
         }}
       >
