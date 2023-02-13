@@ -15,6 +15,8 @@ import Axios from "axios";
 //     this.id = uuid();
 //   }
 // }
+let mapItems = new Map();
+let mapWerehouses = new Map();
 
 export function getInitLists(setListItems, setListWerehouses, setListBalance) {
   Axios.get("http://localhost:3001/api/items/get").then((response) => {
@@ -26,6 +28,25 @@ export function getInitLists(setListItems, setListWerehouses, setListBalance) {
   Axios.get("http://localhost:3001/api/balance/get").then((response) => {
     setListBalance(response.data);
   });
+}
+
+export function getNameItem(itemId) {
+  Axios.get("http://localhost:3001/api/items/get").then((response) => {
+    mapItems.clear();
+    response.data.map((row) => {
+      mapItems.set(row.itemId, row.itemName);
+    });
+  });
+  return mapItems.get(itemId);
+}
+export function getNameWerehouse(werehouseId) {
+  Axios.get("http://localhost:3001/api/werehouses/get").then((response) => {
+    mapWerehouses.clear();
+    response.data.map((row) => {
+      mapWerehouses.set(row.werehouseId, row.werehouseName);
+    });
+  });
+  return mapWerehouses.get(werehouseId);
 }
 
 export function postItem() {}

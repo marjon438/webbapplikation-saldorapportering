@@ -22,6 +22,16 @@
   margin-left: 5px;
   width: 150px;
 }
+.itemgreen {
+  margin-left: 5px;
+  width: 150px;
+  color: green;
+}
+.itemred {
+  margin-left: 5px;
+  width: 150px;
+  color: red;
+}
 
 .test {
   display: flex;
