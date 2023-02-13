@@ -40,7 +40,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   });
 // });
 app.put("/api/balance/put", (req, res) => {
-  console.log(req.body);
   const itemId = req.body.itemId;
   const werehouseId = req.body.werehouseId;
   const newBalance = req.body.balance;
