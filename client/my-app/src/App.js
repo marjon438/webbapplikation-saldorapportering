@@ -1,11 +1,10 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Transfer } from "./transfer";
-import { AddBalance } from "./addbalance";
-import { Overview } from "./overview";
-import { getWerehouses } from "./apifunctions";
-import Axios from "axios";
+import { Transfer } from "./components/transfer";
+import { AddBalance } from "./components/addbalance";
+import { Overview } from "./components/overview";
+import { getInitLists } from "./apifunctions";
 
 function App() {
   const [listItems, setListItems] = useState([]);
@@ -13,19 +12,11 @@ function App() {
   const [listBalance, setListBalance] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/items/get").then((response) => {
-      setListItems(response.data);
-    });
-    Axios.get("http://localhost:3001/api/werehouses/get").then((response) => {
-      setListWerehouses(response.data);
-    });
-    Axios.get("http://localhost:3001/api/balance/get").then((response) => {
-      setListBalance(response.data);
-    });
+    getInitLists(setListItems, setListWerehouses, setListBalance);
   }, []);
 
   return (
-    <div className="header">
+    <div className="App">
       <div className="column">
         <Transfer
           werehouses={listWerehouses}

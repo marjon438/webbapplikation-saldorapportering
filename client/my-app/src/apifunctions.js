@@ -1,44 +1,42 @@
-import { v1 as uuid } from "uuid";
 import Axios from "axios";
 
-class Werehouse {
-  constructor(name) {
-    this.name = name;
-    this.items = new Map();
-    this.id = uuid();
-  }
+// class Werehouse {
+//   constructor(name) {
+//     this.name = name;
+//     this.items = new Map();
+//     this.id = uuid();
+//   }
+// }
+
+// class Item {
+//   constructor(name) {
+//     this.name = name;
+//     this.price = null;
+//     this.id = uuid();
+//   }
+// }
+
+export function getInitLists(setListItems, setListWerehouses, setListBalance) {
+  Axios.get("http://localhost:3001/api/items/get").then((response) => {
+    setListItems(response.data);
+  });
+  Axios.get("http://localhost:3001/api/werehouses/get").then((response) => {
+    setListWerehouses(response.data);
+  });
+  Axios.get("http://localhost:3001/api/balance/get").then((response) => {
+    setListBalance(response.data);
+  });
 }
 
-class Item {
-  constructor(name) {
-    this.name = name;
-    this.price = null;
-    this.id = uuid();
-  }
-}
+export function postItem() {}
+export function deleteItem() {}
+export function updateItem() {}
 
-let werehouses = [];
-werehouses.push(new Werehouse("Cupertino"));
-werehouses.push(new Werehouse("Norrköping"));
-werehouses.push(new Werehouse("Frankfurt"));
+export function postWerehouse() {}
+export function deleteWerehouse() {}
+export function updateWerehouse() {}
 
-let items = [new Item("Laptop"), new Item("Surfplatta"), new Item("Telefon")];
-
-items.forEach((product) =>
-  werehouses.forEach((werehouse) => werehouse.items.set(product.id, 0))
-);
-
-export function getItems() {
-  return items;
-}
-
-export function getWerehouses() {
-  return werehouses;
-}
-
-export function addWerehouse(name) {
-  werehouses.push(new Werehouse(name));
-}
+export function getHistory() {}
 
 export function updateBalanceWerehouse(
   werehouseId,
