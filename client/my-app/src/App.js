@@ -35,7 +35,9 @@ function App() {
       <div className="column">
         <AddBalance
           werehouses={listWerehouses}
-          setListWerehouses={setListWerehouses}
+          items={listItems}
+          listBalance={listBalance}
+          setListBalance={setListBalance}
         />
       </div>
       <div className="column">

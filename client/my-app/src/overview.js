@@ -1,6 +1,5 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getItems } from "./apifunctions";
 
 export function Overview({ werehouses, items, balance }) {
   return (
@@ -25,7 +24,7 @@ export function Overview({ werehouses, items, balance }) {
                           balance.find(
                             (row) =>
                               row.itemId === item.itemId &&
-                              row.werehoseId === werehouse.werehoseId
+                              row.werehouseId === werehouse.werehouseId
                           ).balance
                         }
                       </h6>

@@ -1,4 +1,5 @@
 import { v1 as uuid } from "uuid";
+import Axios from "axios";
 
 class Werehouse {
   constructor(name) {
@@ -39,18 +40,22 @@ export function addWerehouse(name) {
   werehouses.push(new Werehouse(name));
 }
 
-export function setBalanceWerehouse(
+export function updateBalanceWerehouse(
   werehouseId,
   itemId,
   balance,
-  setListWerehouses
+  setListBalance,
+  listBalance
 ) {
-  let newList = [...werehouses];
-  let oldBalance = newList
-    .find((element) => element.id === werehouseId)
-    .items.get(itemId);
-  newList
-    .find((element) => element.id === werehouseId)
-    .items.set(itemId, parseInt(oldBalance) + parseInt(balance));
-  setListWerehouses(newList);
+  const oldBalance = listBalance.find(
+    (row) => row.itemId === itemId && row.werehouseId === werehouseId
+  ).balance;
+  const newBalance = parseInt(oldBalance) + parseInt(balance);
+  Axios.put("http://localhost:3001/api/balance/put", {
+    itemId: itemId,
+    werehouseId: werehouseId,
+    balance: newBalance,
+  }).then((response) => {
+    setListBalance(response.data);
+  });
 }

@@ -3,12 +3,16 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
-import { setBalanceWerehouse } from "./apifunctions";
+import { updateBalanceWerehouse } from "./apifunctions";
 import { getItems } from "./apifunctions";
 
-export function AddBalance({ werehouses, setListWerehouses }) {
-  const [selectedItem, setSelectedItem] = useState({ name: "Välj produkt" });
-  const [selected, setSelected] = useState({ name: "Välj varuhus" });
+export function AddBalance({ werehouses, items, setListBalance, listBalance }) {
+  const [selectedItem, setSelectedItem] = useState({
+    itemName: "Välj produkt",
+  });
+  const [selectedWerehouse, setSelectedWerehouse] = useState({
+    werehouseName: "Välj varuhus",
+  });
   const [balance, setBalance] = useState(0);
   function changeBalance(event) {
     setBalance(event.target.value);
@@ -19,19 +23,19 @@ export function AddBalance({ werehouses, setListWerehouses }) {
       <h5>Produkt:</h5>
       <Dropdown className="dropdown">
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {selectedItem.name}
+          {selectedItem.itemName}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {getItems().map((item) => {
+          {items.map((item) => {
             return (
               <Dropdown.Item
-                key={item}
+                key={item.itemId}
                 onClick={() => {
                   setSelectedItem(item);
                 }}
               >
-                {item.name}
+                {item.itemName}
               </Dropdown.Item>
             );
           })}
@@ -40,19 +44,19 @@ export function AddBalance({ werehouses, setListWerehouses }) {
       <h5>Varuhus:</h5>
       <Dropdown className="dropdown">
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {selected.name}
+          {selectedWerehouse.werehouseName}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
           {werehouses.map((werehouse) => {
             return (
               <Dropdown.Item
-                key={werehouse.id}
+                key={werehouse.werehouseId}
                 onClick={() => {
-                  setSelected(werehouse);
+                  setSelectedWerehouse(werehouse);
                 }}
               >
-                {werehouse.name}
+                {werehouse.werehouseName}
               </Dropdown.Item>
             );
           })}
@@ -69,14 +73,15 @@ export function AddBalance({ werehouses, setListWerehouses }) {
       <Button
         variant="success"
         onClick={() => {
-          setBalanceWerehouse(
-            selected.id,
-            selectedItem.id,
+          updateBalanceWerehouse(
+            selectedWerehouse.werehouseId,
+            selectedItem.itemId,
             balance,
-            setListWerehouses
+            setListBalance,
+            listBalance
           );
-          setSelected({ name: "Välj varuhus" });
-          setSelectedItem({ name: "Välj produkt" });
+          setSelectedWerehouse({ werehouseName: "Välj varuhus" });
+          setSelectedItem({ itemName: "Välj produkt" });
           setBalance(0);
         }}
       >

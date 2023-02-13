@@ -3,7 +3,7 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
-import { setBalanceWerehouse } from "./apifunctions";
+import { updateBalanceWerehouse } from "./apifunctions";
 import { getItems } from "./apifunctions";
 
 export function Transfer({ werehouses, setListWerehouses }) {
@@ -89,13 +89,13 @@ export function Transfer({ werehouses, setListWerehouses }) {
       <Button
         variant="success"
         onClick={() => {
-          setBalanceWerehouse(
+          updateBalanceWerehouse(
             selectedFrom.id,
             selectedItem.id,
             -balance,
             setListWerehouses
           );
-          setBalanceWerehouse(
+          updateBalanceWerehouse(
             selectedTo.id,
             selectedItem.id,
             balance,

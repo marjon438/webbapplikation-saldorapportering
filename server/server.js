@@ -39,19 +39,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     });
 //   });
 // });
-// app.put("/api/put", (req, res) => {
-//   const movieReview = req.body.movieReview;
-//   const idMovie = req.body.idMovie;
-//   console.log(movieReview);
-//   const sqlUpdate =
-//     "UPDATE movie_reviews SET movieReview = ? WHERE idMovie = ?";
-//   db.query(sqlUpdate, [movieReview, idMovie], (err, result) => {
-//     const sqlSelect = "SELECT * FROM movie_reviews";
-//     db.query(sqlSelect, (err, result) => {
-//       res.send(result);
-//     });
-//   });
-// });
+app.put("/api/balance/put", (req, res) => {
+  console.log(req.body);
+  const itemId = req.body.itemId;
+  const werehouseId = req.body.werehouseId;
+  const newBalance = req.body.balance;
+  const sqlUpdate =
+    "UPDATE werehousebalance SET balance = ? WHERE itemId = ? AND werehouseId = ?";
+  db.query(sqlUpdate, [newBalance, itemId, werehouseId], (err, result) => {
+    const sqlSelect = "SELECT * FROM werehousebalance";
+    db.query(sqlSelect, (err, result) => {
+      res.send(result);
+    });
+  });
+});
 
 app.get("/api/items/get", (req, res) => {
   const sqlSelect = "SELECT * FROM items";
