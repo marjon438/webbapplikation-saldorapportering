@@ -2,7 +2,7 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
-import { updateBalanceWerehouse } from "../apifunctions";
+import { updateBalanceWerehouse } from "../../../apifunctions";
 
 export function AddBalance({ werehouses, items, setListBalance, listBalance }) {
   const [selectedItem, setSelectedItem] = useState({

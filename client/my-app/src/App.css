@@ -30,3 +30,6 @@
 .werehousename {
   color: #198754;
 }
+.page {
+  display: flex;
+}

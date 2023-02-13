@@ -71,6 +71,20 @@ app.get("/api/balance/get", (req, res) => {
     res.send(result);
   });
 });
+app.get("/api/history/get", (req, res) => {
+  const sqlSelect = "SELECT * FROM history";
+  db.query(sqlSelect, (err, result) => {
+    res.send(result);
+  });
+});
+app.post("/api/history/post", (req, res) => {
+  const werehouseId = req.body.werehouseId;
+  const itemId = req.body.itemId;
+  const newBalance = req.body.balance;
+  const sqlInsert =
+    "INSERT INTO history (werehouseId, itemId, balance) VALUES (?,?,?);";
+  db.query(sqlInsert, [werehouseId, itemId, newBalance], (err, result) => {});
+});
 
 app.listen(3001, () => {
   console.log("Server running!");

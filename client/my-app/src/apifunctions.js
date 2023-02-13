@@ -36,7 +36,18 @@ export function postWerehouse() {}
 export function deleteWerehouse() {}
 export function updateWerehouse() {}
 
-export function getHistory() {}
+export function postHistory(itemId, werehouseId, newBalance) {
+  Axios.put("http://localhost:3001/api/history/post", {
+    itemId: itemId,
+    werehouseId: werehouseId,
+    balance: newBalance,
+  });
+}
+export function getHistory(setListHistory) {
+  Axios.get("http://localhost:3001/api/history/get").then((response) => {
+    setListHistory(response.data);
+  });
+}
 
 export function updateBalanceWerehouse(
   werehouseId,
@@ -55,5 +66,10 @@ export function updateBalanceWerehouse(
     balance: newBalance,
   }).then((response) => {
     setListBalance(response.data);
+  });
+  Axios.post("http://localhost:3001/api/history/post", {
+    itemId: itemId,
+    werehouseId: werehouseId,
+    balance: balance,
   });
 }
