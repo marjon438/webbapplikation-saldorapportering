@@ -2,7 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getItems } from "./apifunctions";
 
-export function Overview({ werehouses }) {
+export function Overview({ werehouses, items, balance }) {
   return (
     <div>
       <h2>Översikt</h2>
@@ -14,13 +14,21 @@ export function Overview({ werehouses }) {
           </div>
           {werehouses.map((werehouse) => {
             return (
-              <div key={werehouse.id}>
-                <h4 className="werehousename">{werehouse.name}</h4>
-                {getItems().map((item) => {
+              <div key={werehouse.werehouseId}>
+                <h4 className="werehousename">{werehouse.werehouseName}</h4>
+                {items.map((item) => {
                   return (
-                    <div className="test" key={item.id}>
-                      <h6 className="item">{item.name}</h6>
-                      <h6 className="item">{werehouse.items.get(item.id)}</h6>
+                    <div className="test" key={item.itemId}>
+                      <h6 className="item">{item.itemName}</h6>
+                      <h6 className="item">
+                        {
+                          balance.find(
+                            (row) =>
+                              row.itemId === item.itemId &&
+                              row.werehoseId === werehouse.werehoseId
+                          ).balance
+                        }
+                      </h6>
                     </div>
                   );
                 })}
