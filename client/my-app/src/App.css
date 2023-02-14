@@ -1,8 +1,8 @@
 .App {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
   justify-content: center;
+  display: flex;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -19,18 +19,21 @@
   margin: 50px;
 }
 .item {
-  margin-left: 5px;
   width: 150px;
+  font-size: 15px;
+  border-bottom: 1px solid white;
 }
 .itemgreen {
-  margin-left: 5px;
+  font-size: 15px;
   width: 150px;
-  color: green;
+  color: rgb(255, 255, 255);
+  border-bottom: 1px solid white;
 }
 .itemred {
-  margin-left: 5px;
+  font-size: 15px;
   width: 150px;
   color: red;
+  border-bottom: 1px solid white;
 }
 
 .test {

@@ -76,7 +76,9 @@ export function AddBalance({ werehouses, items, setListBalance, listBalance }) {
             selectedItem.itemId,
             balance,
             setListBalance,
-            listBalance
+            listBalance,
+            selectedWerehouse.werehouseName,
+            selectedItem.itemName
           );
           setSelectedWerehouse({ werehouseName: "Välj varuhus" });
           setSelectedItem({ itemName: "Välj produkt" });

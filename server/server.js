@@ -78,12 +78,16 @@ app.get("/api/history/get", (req, res) => {
   });
 });
 app.post("/api/history/post", (req, res) => {
-  const werehouseId = req.body.werehouseId;
-  const itemId = req.body.itemId;
+  const werehouseName = req.body.werehouseName;
+  const itemName = req.body.itemName;
   const newBalance = req.body.balance;
   const sqlInsert =
-    "INSERT INTO history (werehouseId, itemId, balance) VALUES (?,?,?);";
-  db.query(sqlInsert, [werehouseId, itemId, newBalance], (err, result) => {});
+    "INSERT INTO history (werehouseName, itemName, balance) VALUES (?,?,?);";
+  db.query(
+    sqlInsert,
+    [werehouseName, itemName, newBalance],
+    (err, result) => {}
+  );
 });
 
 app.listen(3001, () => {

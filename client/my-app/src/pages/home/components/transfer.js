@@ -98,14 +98,18 @@ export function Transfer({ werehouses, items, setListBalance, listBalance }) {
             selectedItem.itemId,
             -balance,
             setListBalance,
-            listBalance
+            listBalance,
+            selectedWerehouseFrom.werehouseName,
+            selectedItem.itemName
           );
           updateBalanceWerehouse(
             selectedWerehouseTo.werehouseId,
             selectedItem.itemId,
             balance,
             setListBalance,
-            listBalance
+            listBalance,
+            selectedWerehouseTo.werehouseName,
+            selectedItem.itemName
           );
           setSelectedItem({ itemName: "Välj produkt" });
           setSelectedWerehouseFrom({ werehouseName: "Välj varuhus" });
