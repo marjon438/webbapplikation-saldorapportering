@@ -8,13 +8,13 @@ export function History() {
     getHistory(setListHistory);
   }, []);
   return (
-    <div>
+    <div >
       <div>
-        <h1>History</h1>
+        <h1 >Historik</h1>
         <div className="test">
-          <h4 className="item">Varuhus</h4>
-          <h4 className="item">Produkt</h4>
-          <h4 className="item">Transaktion</h4>
+          <h4 className="item">Varuhus:</h4>
+          <h4 className="item">Produkt:</h4>
+          <h4 className="item">Transaktion:</h4>
         </div>
       </div>
       {listHistory.map((row) => {

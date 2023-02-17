@@ -68,7 +68,7 @@ export function AddBalance({ werehouses, items, setListBalance, listBalance }) {
         onChange={changeBalance}
       />
       <div></div>
-      <Button
+      <Button 
         variant="success"
         onClick={() => {
           updateBalanceWerehouse(

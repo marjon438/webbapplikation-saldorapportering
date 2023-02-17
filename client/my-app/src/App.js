@@ -8,12 +8,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Link to="/" className="nav">
-          Home
+        <div className="column"><Link to="/" className="nav">
+          Hem
         </Link>
         <Link to="/history" className="nav">
-          History
-        </Link>
+          Historik
+        </Link></div>
+        
 
         <div>
           <Routes>
